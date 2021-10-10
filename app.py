@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 
-Pclass	Sex	Age	SibSp	Parch	Fare	Embarked
+
 st.title('Titanic Survival Prediction App')
 
 Pclass = st.selectbox('Elect the Passenger Class',(1,2,3))
@@ -30,12 +30,12 @@ if submit:
     
     print(input_list)
     
-    
+    input_list = np.array(input_list).reshape(1,-1)
     
     
     #loading the stored model for prediction
     model = pickle.load(open('dt_best.pickle', 'rb'))
-    output = model.predict(input)
+    output = model.predict(input_list)
     if output:
         st.write(output)
         
